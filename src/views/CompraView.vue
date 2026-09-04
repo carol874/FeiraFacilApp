@@ -1,5 +1,20 @@
 <script setup>
-  // import { pedidos } from '@/data/pedidos'
+import {ref} from 'vue';
+  import { pedidos } from '@/data/pedidos'
+  
+  const codigo = ref('');
+  const nome = ref('');
+  const produto = ref('');
+  const preco = ref ('');
+  const quantidade = ref ('');
+
+
+   function TotalCompra () {
+     preco.value * quantidade.value
+  }
+  function AdicionarProduto (){
+    produto.value.push(pedidos)
+  }
   // O aluno deverá implementar a lógica do componente.
 </script>
 
@@ -26,6 +41,7 @@
             name="codigoPedido"
             type="text"
             placeholder="Ex.: PED-001"
+            v-model="codigo"
           />
         </div>
 
@@ -39,6 +55,7 @@
             name="nomeCliente"
             type="text"
             placeholder="Digite o nome do cliente"
+            v-model="nome"
           />
         </div>
       </div>
@@ -62,6 +79,7 @@
             name="nomeProduto"
             type="text"
             placeholder="Ex.: Tomate"
+            v-model="produto"
           />
         </div>
 
@@ -77,6 +95,7 @@
             min="0"
             step="0.01"
             placeholder="0,00"
+            v-model="preco"
           />
         </div>
 
@@ -92,12 +111,13 @@
             min="1"
             step="1"
             placeholder="0"
+            v-model="quantidade"
           />
         </div>
       </div>
 
       <div class="form-actions">
-        <button class="button button-primary" type="button">
+        <button @click="AdicionarProduto" class="button button-primary" type="button">
           Adicionar produto
         </button>
       </div>
@@ -150,7 +170,7 @@
         <span>Total da compra</span>
 
         <!-- O aluno deverá apresentar aqui o total calculado. -->
-        <strong>R$ 0,00</strong>
+        <strong>{{ TotalCompra.value.lenght }}</strong>
       </div>
 
       <div class="form-actions">

@@ -1,6 +1,17 @@
 <script setup>
+import {ref} from 'vue';
   // O aluno deverá implementar a lógica do componente.
-  // import { pedidos } from '@/data/pedidos'
+  import { pedidos } from '@/data/pedidos'
+  const props = defineProps[('codigo','cliente')];
+ const filtro = ref('');
+
+  function FiltrarPedido () {
+    props.item.value.filter(includes(props.item.value)){
+      return [props.item.value]
+    }
+  }
+
+
 </script>
 
 <template>
@@ -52,23 +63,27 @@
             name="filtro"
             type="search"
             placeholder="Digite o cliente ou código"
+            v-model="filtro"
           />
         </div>
 
-        <button class="button button-primary" type="button">
+        <button @click="FiltrarPedido(item)" class="button button-primary" type="button">
           Filtrar
         </button>
-      </div>
+      </div> 
     </section>
 
     <section class="card" aria-labelledby="pedidos-realizados">
-      <h2 id="pedidos-realizados">Pedidos realizados</h2>
-
+      <h2 v-for="pedido in pedidos" :key="pedido.pedidos" id="pedidos-realizados">Pedidos realizados /h2>
+        
       <!--
         O aluno deverá utilizar uma diretiva condicional para
         apresentar uma mensagem na tela quando nenhum pedido for encontrado.
       -->
+        <p v-if="PedidosRealizados.value.lenght != -1">
+          Nenhum pedido encontrado
 
+        </p>
       <!-- Exiba aqui uma mensagem quando nenhum pedido for encontrado -->
       <div class="table-responsive">
         <table>
